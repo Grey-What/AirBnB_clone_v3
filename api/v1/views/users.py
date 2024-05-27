@@ -7,7 +7,6 @@ from models import storage
 from models.user import User
 
 
-
 @app_views.route('/users', methods=['GET'], strict_slashes=False)
 def get_user():
     list_of_user = [obj.to_dict() for obj in storage.all(User).values()]
@@ -26,7 +25,6 @@ def get_users(user_id):
 
 @app_views.route('/users/<string:user_id>', methods=['DELETE'],
                  strict_slashes=False)
-
 def delete_user(user_id):
     """delete user"""
     user = storage.get(User, user_id)
@@ -46,7 +44,7 @@ def create_user():
     if 'email' not in request.get_json():
         return make_response(jsonify({"error": "Missing email"}), 400)
     if 'password' not in request.get_json():
-        return make_response("error": "Missing password"}), 400)
+        return make_response(jsonify({"error": "Missing password"}), 400)
 
     json = request.get_json()
     obj = User(**json)
