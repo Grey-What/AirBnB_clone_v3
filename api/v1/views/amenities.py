@@ -19,8 +19,8 @@ def get_amenities():
 def get_amenity(amenity_id):
     """get amenity with id"""
     amenity = storage.get(Amenity, amenity_id)
-     if amenity is None:
-         abort(404)
+    if amenity is None:
+        abort(404)
     return jsonify(amenity.to_dict())
 
 
@@ -36,7 +36,7 @@ def del_amenity(amenity_id):
     return jsonify({})
 
 
-@app_views.route('/amenities/', methods=['POST'],strict_slashes=False)
+@app_views.route('/amenities/', methods=['POST'], strict_slashes=False)
 def create_amenity():
     """create a new amenity instance"""
     if not request.get_json():
